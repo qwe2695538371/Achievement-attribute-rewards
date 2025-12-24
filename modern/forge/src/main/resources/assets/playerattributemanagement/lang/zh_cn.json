@@ -1,0 +1,16 @@
+{
+  "playerattributemanagement.configuration.title": "玩家属性管理配置",
+  "playerattributemanagement.configuration.section.playerattributemanagement.common.toml": "玩家属性管理配置",
+  "playerattributemanagement.configuration.section.playerattributemanagement.common.toml.title": "玩家属性管理配置",
+  "playerattributemanagement.configuration.items": "物品列表",
+  "playerattributemanagement.configuration.logDirtBlock": "记录泥土方块信息",
+  "playerattributemanagement.configuration.magicNumberIntroduction": "魔法数字前缀",
+  "playerattributemanagement.configuration.magicNumber": "魔法数字",
+
+  "screen.playerattributemanagement.attribute_panel": "玩家属性面板",
+  "key.playerattributemanagement.attribute_panel": "打开属性面板",
+  "key.categories.playerattributemanagement": "玩家属性管理",
+  "narration.playerattributemanagement.attribute": "属性条目：%s",
+
+  "message.playerattributemanagement.advancement_reward": "%s 获得了 %s %s"
+}

@@ -1,0 +1,16 @@
+{
+  "playerattributemanagement.configuration.title": "Player attribute management Configs",
+  "playerattributemanagement.configuration.section.playerattributemanagement.common.toml": "Player attribute management Configs",
+  "playerattributemanagement.configuration.section.playerattributemanagement.common.toml.title": "Player attribute management Configs",
+  "playerattributemanagement.configuration.items": "Item List",
+  "playerattributemanagement.configuration.logDirtBlock": "Log Dirt Block",
+  "playerattributemanagement.configuration.magicNumberIntroduction": "Magic Number Text",
+  "playerattributemanagement.configuration.magicNumber": "Magic Number",
+
+  "screen.playerattributemanagement.attribute_panel": "Player Attributes",
+  "key.playerattributemanagement.attribute_panel": "Open Attribute Panel",
+  "key.categories.playerattributemanagement": "Player Attribute Management",
+  "narration.playerattributemanagement.attribute": "Attribute entry: %s",
+
+  "message.playerattributemanagement.advancement_reward": "%s gained %s %s"
+}
