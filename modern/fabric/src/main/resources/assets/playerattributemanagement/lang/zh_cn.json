@@ -1,0 +1,27 @@
+{
+  "key.playerattributemanagement.open_panel": "打开属性面板",
+  "screen.playerattributemanagement.title": "玩家属性",
+  "screen.playerattributemanagement.button.refresh": "刷新",
+  "screen.playerattributemanagement.button.close": "关闭",
+  "screen.playerattributemanagement.label.base": "基础 %s",
+  "screen.playerattributemanagement.label.extra": "附加 %s",
+  "screen.playerattributemanagement.label.total": "总计 %s",
+  "tooltip.playerattributemanagement.total": "当前: %s",
+  "tooltip.playerattributemanagement.base": "基础: %s",
+  "tooltip.playerattributemanagement.extra": "附加: %s",
+  "tooltip.playerattributemanagement.source": "来源: %s",
+
+  "message.playerattributemanagement.panel_disabled": "服务器已关闭属性面板。",
+  "message.playerattributemanagement.advancement_reward": "%s %s",
+
+  "command.playerattributemanagement.need_player": "需要玩家执行或指定目标。",
+  "command.playerattributemanagement.unknown_attr": "未知属性 ID。",
+  "command.playerattributemanagement.changed.set": "已设置 %s = %s",
+  "command.playerattributemanagement.changed.add": "已累加 %s -> %s",
+  "command.playerattributemanagement.reset": "已重置 %s",
+  "command.playerattributemanagement.reset.target": "已重置 %s（目标 %s）",
+  "command.playerattributemanagement.reset_all": "已清空托管属性加成",
+  "command.playerattributemanagement.reset_all.target": "已清空 %s 的托管属性加成",
+  "command.playerattributemanagement.list_empty": "%s 当前无托管加成",
+  "command.playerattributemanagement.list_entry": "%s：%s"
+}

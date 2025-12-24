@@ -1,0 +1,27 @@
+{
+  "key.playerattributemanagement.open_panel": "Open Attribute Panel",
+  "screen.playerattributemanagement.title": "Player Attributes",
+  "screen.playerattributemanagement.button.refresh": "Refresh",
+  "screen.playerattributemanagement.button.close": "Close",
+  "screen.playerattributemanagement.label.base": "Base %s",
+  "screen.playerattributemanagement.label.extra": "Extra %s",
+  "screen.playerattributemanagement.label.total": "Total %s",
+  "tooltip.playerattributemanagement.total": "Total: %s",
+  "tooltip.playerattributemanagement.base": "Base: %s",
+  "tooltip.playerattributemanagement.extra": "Extra: %s",
+  "tooltip.playerattributemanagement.source": "Source: %s",
+
+  "message.playerattributemanagement.panel_disabled": "Attribute panel is disabled by the server.",
+  "message.playerattributemanagement.advancement_reward": "%s %s",
+
+  "command.playerattributemanagement.need_player": "Run as a player or specify a target.",
+  "command.playerattributemanagement.unknown_attr": "Unknown attribute ID.",
+  "command.playerattributemanagement.changed.set": "Set %s = %s",
+  "command.playerattributemanagement.changed.add": "Added %s -> %s",
+  "command.playerattributemanagement.reset": "Reset %s",
+  "command.playerattributemanagement.reset.target": "Reset %s for %s",
+  "command.playerattributemanagement.reset_all": "Cleared all managed bonuses",
+  "command.playerattributemanagement.reset_all.target": "Cleared all managed bonuses for %s",
+  "command.playerattributemanagement.list_empty": "%s has no managed bonuses",
+  "command.playerattributemanagement.list_entry": "%s: %s"
+}

@@ -1,0 +1,142 @@
+import java.util.Properties
+
+plugins {
+	id 'fabric-loom' version "${loom_version}"
+	id 'maven-publish'
+}
+
+def mcProfile = (project.findProperty("mc_profile") ?: "1.20.1").toString()
+ext.mc_profile = mcProfile
+
+def versionProps = new Properties()
+def versionFile = file("versions/${mcProfile}.properties")
+if (!versionFile.exists()) {
+	throw new GradleException("找不到 Minecraft 版本 profile：${versionFile}")
+}
+versionFile.withInputStream { versionProps.load(it) }
+versionProps.each { key, value ->
+	project.ext.set(key, value)
+}
+
+logger.lifecycle("使用 profile ${mcProfile}（Minecraft ${project.minecraft_version}, Yarn ${project.yarn_mappings}）")
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
+
+tasks.withType(Jar).configureEach {
+	manifest {
+		attributes(
+			"Implementation-Title": project.archives_base_name,
+			"Implementation-Version": project.version,
+			"Built-On-Minecraft": project.minecraft_version
+		)
+	}
+}
+
+repositories {
+	// Add repositories to retrieve artifacts from in here.
+	// You should only use this when depending on other mods because
+	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
+	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
+	// for more information about repositories.
+}
+
+def versionJavaDir = file("src/versions/${mc_profile}/java")
+def versionResourcesDir = file("src/versions/${mc_profile}/resources")
+def commonProject = findProject(':common')
+def commonJavaDir = commonProject != null ? commonProject.file("src/main/java") : file("../common/src/main/java")
+def commonResourcesDir = commonProject != null ? commonProject.file("src/main/resources") : file("../common/src/main/resources")
+
+sourceSets {
+	main {
+		if (commonJavaDir != null && commonJavaDir.exists()) {
+			java.srcDir(commonJavaDir)
+		}
+		if (commonResourcesDir != null && commonResourcesDir.exists()) {
+			resources.srcDir(commonResourcesDir)
+		}
+		if (versionJavaDir.exists()) {
+			java.srcDir(versionJavaDir)
+		}
+		if (versionResourcesDir.exists()) {
+			resources.srcDir(versionResourcesDir)
+		}
+	}
+}
+
+fabricApi {
+	configureDataGeneration {
+		client = true
+	}
+}
+
+dependencies {
+	// To change the versions see the gradle.properties file
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+	// Fabric API. This is technically optional, but you probably want it anyway.
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	
+}
+
+processResources {
+	inputs.property "version", project.version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": inputs.properties.version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 17
+}
+
+java {
+	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+	// if it is present.
+	// If you remove this line, sources will not be generated.
+	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
+}
+
+tasks.remapJar {
+	archiveFileName.set("${archives_base_name}-${minecraft_version}-${version}.jar")
+}
+
+tasks.remapSourcesJar {
+	archiveFileName.set("${archives_base_name}-${minecraft_version}-${version}-sources.jar")
+}
+
+jar {
+	inputs.property "archivesName", project.base.archivesName
+
+	from("LICENSE") {
+		rename { "${it}_${inputs.properties.archivesName}"}
+	}
+}
+
+// configure the maven publication
+publishing {
+	publications {
+		create("mavenJava", MavenPublication) {
+			artifactId = project.archives_base_name
+			from components.java
+		}
+	}
+
+	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+	repositories {
+		// Add repositories to publish to here.
+		// Notice: This block does NOT have the same function as the block in the top level.
+		// The repositories here will be used for publishing your artifact, not for
+		// retrieving dependencies.
+	}
+}
